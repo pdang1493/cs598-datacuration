@@ -1,0 +1,56 @@
+
+# @begin FullCleaningWorkflow
+# @in Menu.csv
+# @in MenuItem.csv
+# @in Dish.csv
+# @in MenuPage.csv
+# @out Menu_cleaned.csv
+# @out MenuItem_cleaned.csv
+# @out Dish_cleaned.csv
+# @out MenuPage_cleaned.csv
+
+    # @begin CleanMenu
+    # @in Menu.csv
+    # @out Menu_cleaned.csv
+
+        # @begin CleanPlace
+        # @in place
+        # @out place_cleaned
+        # @end CleanPlace
+
+        # @begin CleanEvent
+        # @in event
+        # @out event_cleaned
+        # @end CleanEvent
+
+        # @begin CleanSponsor
+        # @in sponsor
+        # @out sponsor_cleaned
+        # @end CleanSponsor
+
+        # @begin CleanVenue
+        # @in venue
+        # @out venue_cleaned
+        # @end CleanVenue
+
+    # @end CleanMenu
+
+    # @begin CleanMenuItem
+    # @in MenuItem.csv
+    # @out MenuItem_cleaned.csv
+    # @desc Normalize price and high_price using clean_price() function
+    # @end CleanMenuItem
+
+    # @begin CleanDish
+    # @in Dish.csv
+    # @out Dish_cleaned.csv
+    # @desc Normalize lowest_price and highest_price using OpenRefine, remove outliers
+    # @end CleanDish
+
+    # @begin CleanMenuPage
+    # @in MenuPage.csv
+    # @out MenuPage_cleaned.csv
+    # @desc Trim fields, remove duplicates, filter nulls using SQL
+    # @end CleanMenuPage
+
+# @end FullCleaningWorkflow

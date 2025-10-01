@@ -1,0 +1,14 @@
+
+digraph Workflow {
+    rankdir=LR;
+
+    "Menu.csv" -> "CleanMenu" -> "Menu_cleaned.csv";
+    "MenuItem.csv" -> "CleanMenuItem" -> "MenuItem_cleaned.csv";
+    "Dish.csv" -> "CleanDish" -> "Dish_cleaned.csv";
+    "MenuPage.csv" -> "CleanMenuPage" -> "MenuPage_cleaned.csv";
+
+    subgraph cluster_menu {
+        label="CleanMenu";
+        "CleanPlace" -> "CleanEvent" -> "CleanSponsor" -> "CleanVenue";
+    }
+}

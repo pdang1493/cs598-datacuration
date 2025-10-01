@@ -1,0 +1,56 @@
+1. Add new column lowest_price_cleaned
+
+Based on: lowest_price
+
+Expression: grel:value
+
+Purpose: Duplicate the original column for transformation
+
+Inserted at column index 8
+
+2. Add new column highest_price_cleaned
+
+Based on: highest_price
+
+Expression: grel:value
+
+Purpose: Duplicate the original column for transformation
+
+Inserted at column index 10
+
+3. Transform values in lowest_price_cleaned
+
+Expression: value.toNumber()
+
+Purpose: Convert textual price values to numeric format
+
+On error: Keep original value
+
+4. Transform values in highest_price_cleaned
+
+Expression: value.toNumber()
+
+Purpose: Convert textual price values to numeric format
+
+On error: Keep original value
+
+5. Add new column price_flag
+
+Based on: lowest_price_cleaned
+
+Expression: grel:if(value > 100, "Outlier", "OK")
+
+Purpose: Flag unusually high values as potential outliers
+
+Inserted at column index 9
+
+6. Add new column highest_price_flag
+
+Based on: highest_price_cleaned
+
+Expression: grel:if(value > 100, "Outlier", "OK")
+
+Purpose: Flag unusually high values as potential outliers
+
+Inserted at column index 12
+

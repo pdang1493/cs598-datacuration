@@ -1,0 +1,80 @@
+[
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "lowest_price",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "lowest_price_cleaned",
+    "columnInsertIndex": 8,
+    "description": "Create column lowest_price_cleaned at index 8 based on column lowest_price using expression grel:value"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "highest_price",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "highest_price_cleaned",
+    "columnInsertIndex": 10,
+    "description": "Create column highest_price_cleaned at index 10 based on column highest_price using expression grel:value"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "lowest_price_cleaned",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column lowest_price_cleaned using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "highest_price_cleaned",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column highest_price_cleaned using expression value.toNumber()"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "lowest_price_cleaned",
+    "expression": "grel:if(value > 100, \"Outlier\", \"OK\")",
+    "onError": "set-to-blank",
+    "newColumnName": "price_flag",
+    "columnInsertIndex": 9,
+    "description": "Create column price_flag at index 9 based on column lowest_price_cleaned using expression grel:if(value > 100, \"Outlier\", \"OK\")"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "highest_price_cleaned",
+    "expression": "grel:if(value > 100, \"Outlier\", \"OK\")",
+    "onError": "set-to-blank",
+    "newColumnName": "highest_price_flag",
+    "columnInsertIndex": 12,
+    "description": "Create column highest_price_flag at index 12 based on column highest_price_cleaned using expression grel:if(value > 100, \"Outlier\", \"OK\")"
+  }
+]
