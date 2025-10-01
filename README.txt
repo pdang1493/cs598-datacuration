@@ -1,61 +1,50 @@
+# CS598 Data Curation Project (Fall 2025)
 
-Team 16 - Karaoke Masters
+**Student:** Phu Dang  
+**Course:** CS598 Data Curation (UIUC)  
+**Dataset:** New York Public Library (NYPL) Historical Menus
 
-=========================
+---
 
-NYPL Historical Menus – Data Cleaning Project 
----------------------------------------------  
-This project involved cleaning and standardizing the NYPL Historical Menu dataset to support Use Case U1: enabling structured and consistent analysis of historical menu records. We focused on resolving data quality issues across multiple tables to support downstream analysis, including dish classification, pricing trends, and historical reconstructions.
+## 📌 Overview
+This project implements an **end-to-end reproducible data curation workflow** for the NYPL Historical Menus dataset.  
+It demonstrates the **USGS Data Lifecycle model**: acquisition, assessment, cleaning, integration, documentation, and dissemination.
 
-Submission Contents  
--------------------
+---
 
-1. **Workflow Model**  
-   • Located in `YesWorkflow/`  
-   • Files included:  
-     - `YesWorkflow.yw` – Annotated workflow script  
-     - `YesWorkflow.gv` 
-     - `YesWorkflow.dot` / `YesWorkflow.gv` – Graph representations  
-     - `YesWorkflow.pdf` – Final rendered workflow diagram  
+## 📂 Repository Structure
+- `1)YesWorkflow/` → Workflow provenance (YesWorkflow scripts + diagrams)  
+- `2)Operation history/` → Cleaning history and reproducible scripts  
+   - `2a)OpenRefine(Dish)/` → OpenRefine JSON history for Dish table  
+   - `2b)Scripts/` → Jupyter notebooks & Python scripts for cleaning  
+- `3)Queries(MenuPage)/` → SQL queries for MenuPage curation  
+- `4)Original and Cleaned datasets/`  
+   - `Original/` → Raw input datasets (not pushed due to GitHub 100MB limit)  
+   - `Cleaned/` → Curated versions (samples included)  
+- `DataLinks.txt` → Links to download the full dataset  
+- `README.md` → This file  
 
-2. **Operation History**  
-   • Located in `OpenRefine(Dish)/`  
-   • File:  
-     - `Dish_cleaned_OpenRefineHistory.json` – Full OpenRefine transformation history for `Dish.csv`  
+---
 
-     - `Dish_OpenRefine.txt` – Human-readable version of transformation steps applied to `Dish.csv`  
+## ⚠️ Note on Data Size
+The **full CSVs** (Menu, MenuItem, MenuPage, Dish) exceed GitHub’s 100MB file limit.  
+They are **not included in this repo**, but can be downloaded here:  
+👉 [NYPL Menus Dataset](https://menus.nypl.org/data)  
 
-  **Other Scripts and Provenance Files**  
-   • Located in `Scripts/`  
-   • Files:  
-     - `clean_MenuItem.py` – Cleans price-related fields using regex and `word2number`  
-     - `clean_Menu.py` – Normalizes textual fields (`place`, `event`, `sponsor`, `venue`)  
-     - `clean_MenuPage.sql` – SQL logic to trim and filter `MenuPage.csv`  
+This repo includes **sample CSVs** for reproducibility.
 
-3. **Queries**  
-   • Located in `Queries(MenuPage)/`  
-   • File:  
-     - `MenuPage_Query.sql` – SQL statements used to filter and clean the MenuPage dataset  
+---
 
-4. **Original (“Dirty”) and Cleaned Datasets**  
-   • Located in `Cleaned_vs_Dirty_Data/`  
-   ├── Original/  
-   │   - `Menu.csv`  
-   │   - `MenuItem.csv`  
-   │   - `MenuPage.csv`  
-   │   - `Dish.csv`  
-   └── Cleaned/  
-       - `Menu_cleaned.csv`  
-       - `MenuItem_cleaned.csv`  
-       - `MenuPage_cleaned.csv`  
-       - `Dish_cleaned.csv`  
+## 🚀 How to Run
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/pdang1493/cs598-datacuration.git
+   cd cs598-datacuration
+Open Jupyter notebooks in 2)Operation history/2b)Scripts/ to reproduce the cleaning.
 
-5. **Box Folder Link**  
-   • Located in the root directory:  
-   • File:  
-     - `DataLinks.txt` – Plain text file containing the URL to the shared Box folder with all project materials  
+Run SQL scripts in 3)Queries(MenuPage)/ against the dataset.
 
-Contact  
--------
-• Phu Dang – phudang2@illinois.edu  
-• Emily Scray – escray2@illinois.edu  
+📑 References
+New York Public Library. What’s on the Menu? https://menus.nypl.org/
+
+U.S. Geological Survey (USGS) Data Lifecycle Model. https://www.usgs.gov/datamanagement/data-lifecycle
